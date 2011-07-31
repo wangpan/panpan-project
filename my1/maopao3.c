@@ -54,8 +54,12 @@ int main(int argc, const char *argv[])
 {
     int array[M];
     init_array(array,M);
+printf("original:\n");
     print_array(array,M);
+printf("press enter to continul:\n");
+getchar();
     sort_array(array,M);
+printf("sorted:\n");
     print_array(array,M);
     return 0;
 }
