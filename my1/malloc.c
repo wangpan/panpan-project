@@ -56,12 +56,6 @@ STU *add_node(STU *p)
     STU *p_c=NULL;
     
     p_c=malloc(sizeof(STU));
-    if(head == NULL)
-    {
-        head=p;
-        p->next=NULL;
-        return head;
-    }
     if (p_c==NULL)
     {
         perror("malloc new");
@@ -73,6 +67,10 @@ STU *add_node(STU *p)
     printf("please input name:\n");
     scanf("%s",p_c->name);
     p_c->next=NULL;
+    if(p==NULL)
+    {
+        return p_c;
+    }
     if(p_c->number<p->number)
     {
         p_c->next=p;
@@ -161,14 +159,15 @@ void print_link(STU *p)
 int main(int argc, const char *argv[])
 {
     STU *head=NULL;
-    head = create_link(0);
+    int i = 0;
+    head = create_link(10);
     print_link(head);
 //    get_number(head);
 
     head=add_node(head);
     print_link(head);
-//    head=delete_link(head);
-//    print_link(head);
+    head=delete_link(head);
+    print_link(head);
 //    get_number(head);
     return 0;
 }
