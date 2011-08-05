@@ -23,23 +23,22 @@ int main(int argc, const char *argv[])
 //    puts(r_str);
 
 
-
-
     int i = 0;
+    while(str[i]!='\0')
+    {
+        putc(str[i],fp);//读出str【i】中的内容。
+        i++;
+    }
+//    rewind(fp);//进行㝍操作之后指示器指向了结尾  此函数功能是将指示器指向开头
+//    fseek(fp,0,SEEK_SET);//SEEK_SET为起点  0为偏移量  fp为指向结构体的指针  此函数功能：以起点为起点偏移量为0（即指向开头）
+    fseek(fp,5,SEEK_SET);
+    i = 0;
     while((r_str[i]=getc(fp))!=EOF)//getc从fp中取出的内容送到r_str数组中   EOF为结束标志
     {
         i++;
     }
     r_str[i]='\0';
     printf("%s\n",r_str);
-
-
-
-//    while(str[i]!='\0')
-//    {
-//        putc(str[i],fp);//读出str【i】中的内容。
-//        i++;
-//    }
     fclose(fp);//关闭fp。
     return 0;
 }
