@@ -145,7 +145,7 @@ STU  *read_data(void)//将学生信息从文件中读取出来  读取时先读�
         perror("malloc");
         exit(0);
     }
-    if (fscanf(fp,"%d%s",&num,iname)==EOF)
+    if (fscanf(fp,"%d%s",&num,iname)==EOF)//EOF为结束标志
     {
         return NULL;
     }
