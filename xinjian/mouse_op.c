@@ -30,7 +30,7 @@ static u32_t cursor_pixel[C_W*C_H]=
 	T___,T___,T___,T___,T___,T___,BORD,BORD,T___,T___,
 
 };//设置鼠标基本模型
-u32_t bg[C_H*C_W]={0};//设置背景颜色为黑色
+u32_t bg[C_H*C_W]={0};//初始化背景颜色为黑色
 int draw_cursor(int x,int y)//画鼠标
 {
 	int i = 0;
@@ -94,7 +94,7 @@ int mouse_doing(void)
 {
 	int fd = 0;
 	mouse_event m_e;
-
+	char press_do = 0;
 
 	fd = open("/dev/input/mice", O_RDWR|O_NONBLOCK);
 	if(fd == -1)
@@ -115,6 +115,37 @@ int mouse_doing(void)
 			restore_bg(mx, my);
 			mx += m_e.dx;
 			my += m_e.dy;
+			if (mx<0)
+			{
+				mx = 0;
+			}
+			if (mx>(fb_v.w-C_W))
+			{
+				mx = fb_v.w-C_W;
+			}
+			
+			if (my<0)
+			{
+				my = 0;
+			}
+			if (my>(fb_v.h-C_H))
+			{
+				my = fb_v.h-C_H;
+			}
+			switch(m_e.button)
+			{
+				case 0:
+				if(press_do ==1)
+				{
+					press_do = 0;
+					fb_circle(mx,my,13,0x000000ff);
+				}
+				break;
+				case 1:press_do=1;break;
+				case 2:break;
+				case 4:break;
+				default :break;
+			}
 			draw_cursor(mx, my);
 		}
 	}
