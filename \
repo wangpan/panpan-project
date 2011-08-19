@@ -1,0 +1,24 @@
+#include<stdio.h>
+int main()
+{
+    int n= 167;
+    n = n % 16;
+    if (n < 10)
+    {
+        printf ("%d\n",n);
+       
+    }
+    else
+    {
+        switch()
+        {
+            case 10:printf("a");break;
+            case 11:printf("b");break;
+            case 12:printf("c");break;
+            case 13:printf("d");break;
+            case 14:printf("e");break;
+            case 15:printf("f");break;
+        }
+    }
+}
+
