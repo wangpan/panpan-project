@@ -9,6 +9,9 @@
 fbscr_t fb_v;//定义结构体变量fb_v
 int mx;
 int my;
+char chess_board[X_NUM*Y_NUM];
+char player;
+u32_t current_color;
 int init_data(void)
 {
 	int fd = 0;
@@ -34,6 +37,9 @@ int init_data(void)
 		exit(0);
 	}
 	memset(fb_v.memo,0,fb_v.w*fb_v.h*fb_v.bpp/8);//将第二个变量放到从指针开始处开始数第三个变量大小的字节的地方 0 代表黑色  此处意义：初始化一个空间
+	memset(chess_board,0,X_NUM*Y_NUM);
+	current_color = BLACK;
+	player = 1;
 /*	int i = 0;
 	u32_t *p = fb_v.memo;
 	for(i = 0;i<fb_v.w;i++)

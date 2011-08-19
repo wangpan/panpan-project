@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 #include<stdlib.h>
 #include<unistd.h>
 #include<fcntl.h>
@@ -89,13 +90,25 @@ int get_mouse_info(int fd, mouse_event *p)
 	
 	return n;
 }
+int reinit(void)
+{
+	memset(fb_v.memo,0,fb_v.w*fb_v.h*fb_v.bpp/8);
+	print_board();
+	memset(chess_board,0,X_NUM*Y_NUM);
+	player = 1;
+	current_color = BLACK;
+	mx = fb_v.w/2;
+	my = fb_v.h/2;
+	draw_cursor(mx,my);
+	return 0;
 
+}
 int mouse_doing(void)
 {
 	int fd = 0;
 	mouse_event m_e;
 	char press_do = 0;
-
+	int flag = 0;
 	fd = open("/dev/input/mice", O_RDWR|O_NONBLOCK);
 	if(fd == -1)
 	{
@@ -138,7 +151,7 @@ int mouse_doing(void)
 				if(press_do ==1)
 				{
 					press_do = 0;
-					fb_circle(mx,my,13,0x000000ff);
+					flag = chess_doing();
 				}
 				break;
 				case 1:press_do=1;break;
@@ -147,7 +160,16 @@ int mouse_doing(void)
 				default :break;
 			}
 			draw_cursor(mx, my);
+			if(flag>0)
+			{
+				printf("winner is %d!\n",flag);
+				getchar();
+				flag=0;
+				reinit();
+			}
 		}
+		usleep(500);
 	}
+	close(fd);
 	return 0;
 }

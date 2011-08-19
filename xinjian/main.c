@@ -13,6 +13,7 @@ int main(int argc, const char *argv[])//注意：每个程序只有一个主函�
     restore_bg(500,300);//调用恢复函数  功能：将鼠标的形状以及位置恢复到原来记录的地方  即：清除鼠标子啊显示器上的形状  以等待下一个鼠标的输入
     
     draw_cursor(600,300);//重新导入一个鼠标  在显示器是上输出
+    
 
 //    fb_one_pixel(fb_v.w/2,fb_v.h/2,0x00ff0000);
 //    fb_line(0,0,fb_v.w-1,fb_v.h-1,0x0000ff00);

@@ -8,6 +8,9 @@ typedef unsigned int u32_t;
 #define SPACE 30
 #define X_NUM 29
 #define Y_NUM 24
+#define BLACK 0x00ffffff
+#define WHITE 0x00000000
+#define YELLOW 0x00cc9966
 typedef struct 
 {
 	int w;
@@ -31,4 +34,5 @@ int draw_cursor(int x,int y);
 int save_bg(int x,int y);
 int restore_bg(int x,int y);
 int mouse_doing(void);
+int chess_doing(void);
 #endif
